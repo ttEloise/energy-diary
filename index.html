@@ -32,6 +32,21 @@
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
   </svg>
 
+  <div class="lock-screen" id="lockScreen">
+    <div class="lock-card">
+      <div class="lock-brand">
+        <span class="brand-dot"></span>
+        <span data-i18n="appName">能量手账</span>
+      </div>
+      <label class="field">
+        <span data-i18n="passwordLabel">访问密码</span>
+        <input type="password" id="passwordInput" autocomplete="current-password" data-i18n-placeholder="passwordPlaceholder">
+      </label>
+      <button type="button" class="btn primary lock-button" id="unlockBtn" data-i18n="unlock">进入</button>
+      <div class="password-error" id="passwordError" hidden data-i18n="passwordError">密码错误</div>
+    </div>
+  </div>
+
   <div class="app">
     <header class="topbar">
       <div class="brand">

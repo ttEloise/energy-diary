@@ -2,6 +2,7 @@
   'use strict';
 
   const STORAGE_KEY = 'energy-day.v1';
+  const ACCESS_PASSWORD = 'energy2026';
   const COLORS = ['#f9c6d2', '#bde0fe', '#c8f0d8', '#ffe6ad', '#d8d3ff', '#ffd8c2', '#f3d1f4', '#fde2c8'];
   const PRIORITIES = [
     { value: 0, label: '低', labelEn: 'Low' },
@@ -20,6 +21,10 @@
   const I18N = {
     zh: {
       appName: '能量手账',
+      passwordLabel: '访问密码',
+      passwordPlaceholder: '请输入访问密码',
+      unlock: '进入',
+      passwordError: '密码错误',
       views: '视图',
       tabCalendar: '日历',
       tabDay: '今日',
@@ -134,6 +139,10 @@
     },
     en: {
       appName: 'Energy Diary',
+      passwordLabel: 'Access password',
+      passwordPlaceholder: 'Enter access password',
+      unlock: 'Enter',
+      passwordError: 'Incorrect password',
       views: 'Views',
       tabCalendar: 'Calendar',
       tabDay: 'Today',
@@ -346,7 +355,6 @@
     try {
       localStorage.setItem('energy-day.lang', lang);
     } catch (error) {}
-    applyStaticI18n();
     applyStaticI18n();
     renderAll();
   }
@@ -1594,6 +1602,26 @@
     }, 3200);
   }
 
+  function initLockScreen() {
+    function unlock() {
+      if ($('#passwordInput').value === ACCESS_PASSWORD) {
+        $('#lockScreen').hidden = true;
+        $('#passwordInput').value = '';
+      } else {
+        $('#passwordError').hidden = false;
+      }
+    }
+    $('#unlockBtn').addEventListener('click', unlock);
+    $('#passwordInput').addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        unlock();
+      }
+    });
+    $('#passwordInput').addEventListener('input', function () {
+      $('#passwordError').hidden = true;
+    });
+  }
+
   function init() {
     $$('.tab').forEach(function (tab) {
       tab.addEventListener('click', function () {
@@ -1832,6 +1860,8 @@
       renderMonth();
     });
 
+    applyStaticI18n();
+    initLockScreen();
     renderAll();
     setView('calendar');
   }
