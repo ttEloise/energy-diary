@@ -2,7 +2,7 @@
   'use strict';
 
   const STORAGE_KEY = 'energy-day.v1';
-  const ACCESS_PASSWORD = 'energy2026';
+  const ACCESS_PASSWORD = '6511';
   const COLORS = ['#f9c6d2', '#bde0fe', '#c8f0d8', '#ffe6ad', '#d8d3ff', '#ffd8c2', '#f3d1f4', '#fde2c8'];
   const PRIORITIES = [
     { value: 0, label: '低', labelEn: 'Low' },
